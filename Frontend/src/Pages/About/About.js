@@ -15,7 +15,7 @@ function About(){
         </div>
         <div className={AboutCss.right}>
             <h1 className={AboutCss.heading}>About</h1>
-            <p className={AboutCss.content}>Struggling to write your resume? Don't worry. We have over 250+ sample bullet points from top resumes across all industries and skills. Use our templates and sample lines to quickly write an effective resume from scratch.</p>
+            <p className={AboutCss.content}>Our ATS Resume Scorer Web Application is a cutting-edge platform designed to optimize your resume for Applicant Tracking Systems (ATS). Our mission is to help job seekers like you navigate the complexities of modern recruitment processes and increase your chances of landing interviews.</p>
         </div>
         </div>
  
