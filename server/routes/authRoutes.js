@@ -14,5 +14,5 @@ router.use(
 router.get('/login', test)
 router.post('/register',registerUser);
 router.post('/login',loginUser);
-router.get('/profile', getProfile)
+// router.get('/profile', getProfile)
 module.exports = router
