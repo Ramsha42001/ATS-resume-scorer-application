@@ -7,7 +7,7 @@ const {test,registerUser,loginUser, getProfile} = require('../controllers/authCo
 router.use(
     cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: 'https://ats-resume-scorer-application.vercel.app/',
     })
 );
 
