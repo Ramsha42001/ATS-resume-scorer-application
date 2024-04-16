@@ -68,7 +68,7 @@ const registerUser = async (req,res) =>{
 
 //profile end-point
 const getProfile = (req, res) => {
-    const { token } = req.cookies;
+    const { token } = req.cookies?.token || req.headers("Authorization")?.split(' ')[1] ;
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
             if (err) {
