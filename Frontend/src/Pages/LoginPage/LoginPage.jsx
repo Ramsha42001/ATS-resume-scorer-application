@@ -35,7 +35,7 @@ const LoginPage = () => {
       e.preventDefault()
       const {email,password} = data;
       try{
-        const {data} = await axios.post('/login',{
+        const {data} = await axios.post('https://ats-resume-scorer-application-2.onrender.com/login',{
           email,
           password,
         })

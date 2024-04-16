@@ -40,7 +40,7 @@ const LoginPage = () => {
       e.preventDefault();
       const {name,email,password}= data;
       try{
-        const {data} = await axios.post('/register',{
+        const {data} = await axios.post('https://ats-resume-scorer-application-2.onrender.com/register',{
           name,email,password
         })
         if(data.error){
