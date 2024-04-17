@@ -11,6 +11,7 @@ function Home() {
   const handleButtonClick = () => {
     if (isLoggedIn) {
       // Redirect to the upload resume page if logged in
+      setIsLoggedIn(true);
       navigate('/upload-resume');
     } else {
       // Redirect to the login page if not logged in
