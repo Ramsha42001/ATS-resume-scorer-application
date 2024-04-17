@@ -17,29 +17,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get('/login', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}` // Send token with request
-          }
-        });
-        setIsLoggedIn(true); // User is authenticated
-        console.log("logged in");
-      } catch (error) {
-        setIsLoggedIn(false); // User is not authenticated
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    checkAuth();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking authentication status
-  }
 
   return (
     <BrowserRouter>
@@ -48,31 +26,12 @@ function App() {
         <Route
           path="/"
           element={
-            isLoggedIn ? (
-              <div>
-                <Navbar />
-                <HomePage />
-              </div>
-            ) : (
-              <Navigate to="/login" replace />
-            )
+            <LoginPage />
           }
         />
+        <Route path="/Home" element={<div><Navbar /><HomePage /><AboutPage /></div>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/about"
-          element={
-            isLoggedIn ? (
-              <div>
-                <Navbar />
-                <AboutPage />
-              </div>
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
       </Routes>
     </BrowserRouter>
   );

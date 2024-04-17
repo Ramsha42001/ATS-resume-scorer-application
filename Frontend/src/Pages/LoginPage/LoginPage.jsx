@@ -44,7 +44,7 @@ const LoginPage = () => {
         }else{
           toast.success("Login Success")
           setData({})
-          navigate('/')
+          navigate('/Home')
         }
       }catch(e){
         console.log(e)

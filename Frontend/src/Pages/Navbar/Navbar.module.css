@@ -38,12 +38,21 @@
     width: 25%;
     justify-content: space-evenly;
     align-items: center;
+    margin-right: 20px;
+ 
 }
 
 .navLink 
 {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 19px;
+    font-weight: 600;
     text-decoration: none;
     color: rgb(63, 60, 60);
+    
+}
+
+.navLink:hover 
+{
+   color: #8C1515;
+   scale: 1.25;
 }
