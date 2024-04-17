@@ -6,15 +6,14 @@ import resume from './resume1.jpg';
 
 function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate(); // Using useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleButtonClick = () => {
     if (isLoggedIn) {
-      // Redirect to the upload resume page if logged in
+
       setIsLoggedIn(true);
       navigate('/upload-resume');
     } else {
-      // Redirect to the login page if not logged in
       navigate('/login');
     }
   };
