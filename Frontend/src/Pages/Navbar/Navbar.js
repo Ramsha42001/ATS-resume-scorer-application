@@ -12,10 +12,17 @@ function Navbar() {
     });
   };
 
+  const scrollToTop = (position) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // You can set it to 'auto' for instant scrolling
+    });
+  };
+
   return (
     <>
       <div className={NavCss.mainBox}>
-        <div className={NavCss.logoDiv}>
+        <div className={NavCss.logoDiv} onClick={() => scrollToTop(0)}>
           <img className={NavCss.logo} src={logo} alt="Logo" />
         </div>
         <div className={NavCss.navDiv}>
