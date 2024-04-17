@@ -14,20 +14,62 @@ axios.defaults.baseURL ='https://ats-resume-scorer-application-2.onrender.com';
 axios.defaults.withCredentials = true;
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // Check if the user is logged in when the component mounts
+    axios.get("/api/checkAuth")
+      .then(response => {
+        setIsLoggedIn(true); // Assuming the server returns true if the user is logged in
+        setLoading(false);
+      })
+      .catch(error => {
+        setIsLoggedIn(false);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading indicator while checking authentication status
+  }
 
   return (
     <BrowserRouter>
-     <Navbar />
       <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              <div>
+                <Navbar />
+                <HomePage />
+              </div>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="/about"
+          element={
+            isLoggedIn ? (
+              <div>
+                <Navbar />
+                <AboutPage />
+              </div>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
