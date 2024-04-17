@@ -18,16 +18,23 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if the user is logged in when the component mounts
-    axios.get("/api/checkAuth")
-      .then(response => {
-        setIsLoggedIn(true); // Assuming the server returns true if the user is logged in
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get('/login', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}` // Send token with request
+          }
+        });
+        setIsLoggedIn(true); // User is authenticated
+        console.log("logged in");
+      } catch (error) {
+        setIsLoggedIn(false); // User is not authenticated
+      } finally {
         setLoading(false);
-      })
-      .catch(error => {
-        setIsLoggedIn(false);
-        setLoading(false);
-      });
+      }
+    };
+
+    checkAuth();
   }, []);
 
   if (loading) {
