@@ -1,43 +1,43 @@
 import './App.css';
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from './Pages/LoginPage/LoginPage';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import axios from 'axios';
-import RegisterPage from '../src/Pages/RegisterPage/RegisterPage';
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
 import HomePage from '../src/Pages/Home/Home';
-import Navbar from './Pages/Navbar/Navbar'
-import AboutPage from './Pages/About/About'
-axios.defaults.baseURL ='https://ats-resume-scorer-application-2.onrender.com'
-axios.defaults.withCredentials=true;
+import Navbar from './Pages/Navbar/Navbar';
+import AboutPage from './Pages/About/About';
+import LoginPage from './Pages/LoginPage/LoginPage';
+import RegisterPage from '../src/Pages/RegisterPage/RegisterPage';
+
+axios.defaults.baseURL ='https://ats-resume-scorer-application-2.onrender.com';
+axios.defaults.withCredentials = true;
+
 function App() {
-  return ( 
-    // <UserContextProvider >
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get("/api/checkAuth")
+      .then(response => {
+        setIsLoggedIn(true); // Assuming the server returns true if the user is logged in
+      })
+      .catch(error => {
+        setIsLoggedIn(false);
+      });
+  }, []);
+
+  return (
     <BrowserRouter>
-    <Navbar />
-    <Toaster  position="top-center" toastOptions={{duration:2000}} />
+    {  isLoggedIn? <Navbar />: ''}
+      <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       <Routes>
-      <Route
-          path="/"
-          element={<div><HomePage /><AboutPage /></div>}
-        />
-        {/* <Route
-          path="/"
-          element={<div><AboutPage /></div>}
-        /> */}
-        <Route
-          path="/login"
-          element={<div><LoginPage /></div>}
-        />
-        {/* Define other routes here */}
-        <Route
-          path="/register"
-          element={<div><RegisterPage /></div>}
-        />
+        <Route path="/" element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
-    // </UserContextProvider>
   );
 }
 
