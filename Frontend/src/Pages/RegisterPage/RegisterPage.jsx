@@ -49,7 +49,7 @@ const LoginPage = () => {
         else{
           setData({})
           toast.success("register success")
-          navigate('/')
+          navigate('/login')
         }
       }catch(error){
         console.log('error registering the user')
