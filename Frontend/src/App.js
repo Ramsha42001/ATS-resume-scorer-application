@@ -20,12 +20,12 @@ function App() {
       <Routes>
       <Route
           path="/"
-          element={<div><HomePage /></div>}
+          element={<div><HomePage /><AboutPage /></div>}
         />
-        <Route
-          path="/about"
+        {/* <Route
+          path="/"
           element={<div><AboutPage /></div>}
-        />
+        /> */}
         <Route
           path="/login"
           element={<div><LoginPage /></div>}

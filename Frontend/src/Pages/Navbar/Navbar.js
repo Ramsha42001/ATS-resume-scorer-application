@@ -11,7 +11,7 @@ function Navbar() {
           <img className={NavCss.logo} src={logo} alt="Logo" />
         </div>
         <div className={NavCss.navDiv}>
-          <h2><Link to="/about">About</Link></h2>
+          <h2>About</h2>
           {/* Use Link to navigate to the '/login' route */}
           <h2><Link to="/login">Login</Link></h2>
         </div>
