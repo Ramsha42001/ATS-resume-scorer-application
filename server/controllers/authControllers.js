@@ -67,26 +67,26 @@ const registerUser = async (req,res) =>{
 }
 
 //profile end-point
-const getProfile = (req, res) => {
-    const { token } = req.cookies;
-    if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-            if (err) {
-                console.error('JWT verification error:', err);
-                res.status(401).json({ error: 'Unauthorized' });
-            } else {
-                console.log('Token Created dn verified')
-                res.json(user);
-            }
-        });
-    } else {
-        res.json(null);
-    }
-};
+// const getProfile = (req, res) => {
+//     const token = req.cookies?.token || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
+//     if (token) {
+//         jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+//             if (err) {
+//                 console.error('JWT verification error:', err);
+//                 res.status(401).json({ error: 'Unauthorized' });
+//             } else {
+//                 console.log('Token Created dn verified')
+//                 res.json(user);
+//             }
+//         });
+//     } else {
+//         res.json(null);
+//     }
+// };
 
 module.exports = {
     test,
     registerUser,
     loginUser,
-    getProfile,
+    // getProfile,
 }

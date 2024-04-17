@@ -9,11 +9,11 @@ import { UserContextProvider } from './context/userContext';
 import HomePage from '../src/Pages/Home/Home';
 import Navbar from './Pages/Navbar/Navbar'
 import AboutPage from './Pages/About/About'
-axios.defaults.baseURL ='http://localhost:8000'
+axios.defaults.baseURL ='https://ats-resume-scorer-application-2.onrender.com'
 axios.defaults.withCredentials=true;
 function App() {
   return ( 
-    <UserContextProvider >
+    // <UserContextProvider >
     <BrowserRouter>
     <Navbar />
     <Toaster  position="top-center" toastOptions={{duration:2000}} />
@@ -37,7 +37,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
-    </UserContextProvider>
+    // </UserContextProvider>
   );
 }
 
