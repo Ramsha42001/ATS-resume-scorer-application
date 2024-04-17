@@ -20,10 +20,12 @@ function App() {
   useEffect(() => {
     axios.get("/api/checkAuth")
       .then(response => {
-        setIsLoggedIn(true); // Assuming the server returns true if the user is logged in
+        setIsLoggedIn(true); 
+        console.log("logged in")
       })
       .catch(error => {
         setIsLoggedIn(false);
+        console.log("not logged in")
       });
   }, []);
 
